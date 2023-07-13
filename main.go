@@ -27,11 +27,14 @@ func main() {
 	router := routers.NewRouter()
 	s := &http.Server{
 		//Addr:           ":8080",
-		Addr:    global.ServerSetting.HttpPort,
-		Handler: router,
+		//Handler:        router,
 		//ReadTimeout:    10 * time.Second,
-		ReadTimeout: global.ServerSetting.ReadTimeout,
 		//WriteTimeout:   10 * time.Second,
+		//MaxHeaderBytes: 1 << 20,
+
+		Addr:           global.ServerSetting.HttpPort,
+		Handler:        router,
+		ReadTimeout:    global.ServerSetting.ReadTimeout,
 		WriteTimeout:   global.ServerSetting.WriteTimeout,
 		MaxHeaderBytes: 1 << 20,
 	}
