@@ -32,7 +32,7 @@ func main() {
 		//WriteTimeout:   10 * time.Second,
 		//MaxHeaderBytes: 1 << 20,
 
-		Addr:           global.ServerSetting.HttpPort,
+		Addr:           ":" + global.ServerSetting.HttpPort,
 		Handler:        router,
 		ReadTimeout:    global.ServerSetting.ReadTimeout,
 		WriteTimeout:   global.ServerSetting.WriteTimeout,
