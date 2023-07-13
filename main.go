@@ -37,7 +37,7 @@ func main() {
 	//	c.JSON(200, gin.H{"message": "pong"})
 	//})
 	//r.Run()
-	global.Logger.Infof("%s: go-programming-tour-book/%s", "eddycjy", "blog-service")
+
 	router := routers.NewRouter()
 	s := &http.Server{
 		//Addr:           ":8080",
