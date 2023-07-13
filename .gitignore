@@ -5,3 +5,6 @@
 *.ntvs*
 *.njsproj
 *.sln
+
+#日志
+storage/logs/*

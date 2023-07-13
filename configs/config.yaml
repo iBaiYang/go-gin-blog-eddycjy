@@ -14,7 +14,7 @@ Database:
   Username: root  # 填写你的数据库账号
   Password: 123456  # 填写你的数据库密码
   Host: 192.168.56.108:3306
-  DBName: blog_service
+  DBName: go-gin-blog-eddycjy
   TablePrefix: blog_
   Charset: utf8
   ParseTime: True
