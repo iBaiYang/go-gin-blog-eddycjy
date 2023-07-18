@@ -1,14 +1,13 @@
 package main
 
 import (
+	"github.com/gin-gonic/gin"
 	"github.com/iBaiYang/go-gin-blog-eddycjy/global"
 	"github.com/iBaiYang/go-gin-blog-eddycjy/internal/model"
-	"github.com/iBaiYang/go-gin-blog-eddycjy/pkg/logger"
-	"gopkg.in/natefinch/lumberjack.v2"
-
-	//"github.com/gin-gonic/gin"
 	"github.com/iBaiYang/go-gin-blog-eddycjy/internal/routers"
+	"github.com/iBaiYang/go-gin-blog-eddycjy/pkg/logger"
 	"github.com/iBaiYang/go-gin-blog-eddycjy/pkg/setting"
+	"gopkg.in/natefinch/lumberjack.v2"
 	"log"
 	"net/http"
 	"time"
@@ -42,6 +41,7 @@ func main() {
 	//})
 	//r.Run()
 
+	gin.SetMode(global.ServerSetting.RunMode)
 	router := routers.NewRouter()
 	s := &http.Server{
 		//Addr:           ":8080",

@@ -72,3 +72,14 @@ CREATE TABLE `blog_article_tag` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='文章标签关联';
 ```
+
+## 命令
+
+> curl -X POST http://127.0.0.1:8000/api/v1/tags -F name=PHP -F created_by=one -F state=1
+
+> curl -X PUT http://127.0.0.1:8000/api/v1/tags/1 -F state=1 -F modified_by=two -F name=PHP
+
+> curl -X GET http://127.0.0.1:8000/api/v1/tags?page=2&page_size=2
+
+> curl -X DELETE  http://127.0.0.1:8000/api/v1/tags/2
+
