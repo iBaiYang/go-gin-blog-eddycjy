@@ -75,11 +75,22 @@ CREATE TABLE `blog_article_tag` (
 
 ## 命令
 
+### tag标签
+
+新增一条：
 > curl -X POST http://127.0.0.1:8000/api/v1/tags -F name=Go -F created_by=one -F state=1
 
+获取指定：
+> curl -X GET http://127.0.0.1:8000/api/v1/tags/1
+
+更新指定：
 > curl -X PUT http://127.0.0.1:8000/api/v1/tags/1 -F name=PHP -F modified_by=two -F state=0
 
-> curl -X GET http://127.0.0.1:8000/api/v1/tags?page=2&page_size=2
-
+删除指定：
 > curl -X DELETE  http://127.0.0.1:8000/api/v1/tags/1
+
+获取列表（执行时总是报错，原来是win10中curl包的问题，浏览器访问没问题）：
+> curl -X GET http://127.0.0.1:8000/api/v1/tags?name=Go&state=1&page=2&page_size=2
+
+
 

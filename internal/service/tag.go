@@ -16,8 +16,7 @@ type TagListRequest struct {
 }
 
 type TagRequest struct {
-	ID    uint32 `form:"id" binding:"required,gte=1"`
-	State uint8  `form:"state,default=1" binding:"oneof=0 1"`
+	ID uint32 `form:"id" binding:"required,gte=1"`
 }
 
 type CreateTagRequest struct {
@@ -28,7 +27,7 @@ type CreateTagRequest struct {
 
 type UpdateTagRequest struct {
 	ID         uint32 `form:"id" binding:"required,gte=1"`
-	Name       string `form:"name" binding:"min=3,max=100"`
+	Name       string `form:"name" binding:"min=1,max=100"`
 	State      uint8  `form:"state" binding:"required,oneof=0 1"`
 	ModifiedBy string `form:"modified_by" binding:"required,min=3,max=100"`
 }
@@ -50,7 +49,7 @@ func (svc *Service) GetTagList(param *TagListRequest, pager *app.Pager) ([]*mode
 //}
 
 func (svc *Service) GetTag(param *TagRequest) (model.Tag, error) {
-	return svc.dao.GetTag(param.ID, param.State)
+	return svc.dao.GetTag(param.ID)
 }
 
 func (svc *Service) CreateTag(param *CreateTagRequest) error {

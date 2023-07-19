@@ -21,8 +21,8 @@ func (d *Dao) GetTagListByIDs(ids []uint32, state uint8) ([]*model.Tag, error) {
 	return tag.ListByIDs(d.engine, ids)
 }
 
-func (d *Dao) GetTag(id uint32, state uint8) (model.Tag, error) {
-	tag := model.Tag{Model: &model.Model{ID: id}, State: state}
+func (d *Dao) GetTag(id uint32) (model.Tag, error) {
+	tag := model.Tag{Model: &model.Model{ID: id}}
 	return tag.Get(d.engine)
 }
 
