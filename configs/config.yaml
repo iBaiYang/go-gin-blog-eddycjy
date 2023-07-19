@@ -31,3 +31,12 @@ JWT:
   Secret: go-gin-blog
   Issuer: go-gin-blog-eddycjy
   Expire: 7200
+Email:
+  Host: smtp.qq.com
+  Port: 465
+  UserName: xxxx@qq.com
+  Password: xxxxxxxx
+  IsSSL: true
+  From: xxxx@qq.com
+  To:
+    - xxxx@qq.com
