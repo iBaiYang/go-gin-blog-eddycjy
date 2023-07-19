@@ -75,11 +75,11 @@ CREATE TABLE `blog_article_tag` (
 
 ## 命令
 
-> curl -X POST http://127.0.0.1:8000/api/v1/tags -F name=PHP -F created_by=one -F state=1
+> curl -X POST http://127.0.0.1:8000/api/v1/tags -F name=Go -F created_by=one -F state=1
 
-> curl -X PUT http://127.0.0.1:8000/api/v1/tags/1 -F state=1 -F modified_by=two -F name=PHP
+> curl -X PUT http://127.0.0.1:8000/api/v1/tags/1 -F name=PHP -F modified_by=two -F state=0
 
 > curl -X GET http://127.0.0.1:8000/api/v1/tags?page=2&page_size=2
 
-> curl -X DELETE  http://127.0.0.1:8000/api/v1/tags/2
+> curl -X DELETE  http://127.0.0.1:8000/api/v1/tags/1
 

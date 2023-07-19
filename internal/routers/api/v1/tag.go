@@ -15,15 +15,6 @@ func NewTag() Tag {
 	return Tag{}
 }
 
-// @Summary 获取单个标签
-// @Produce json
-// @Param id path int true "标签ID"
-// @Success 200 {object} model.Tag "成功"
-// @Failure 400 {object} errcode.Error "请求错误"
-// @Failure 500 {object} errcode.Error "内部错误"
-// @Router /api/v1/tags/{id} [get]
-func (t Tag) GET(c *gin.Context) {}
-
 // @Summary 获取多个标签
 // @Produce  json
 // @Param name query string false "标签名称" maxlength(100)
@@ -46,6 +37,7 @@ func (t Tag) List(c *gin.Context) {
 
 	svc := service.New(c.Request.Context())
 	pager := app.Pager{Page: app.GetPage(c), PageSize: app.GetPageSize(c)}
+
 	totalRows, err := svc.CountTag(&service.CountTagRequest{Name: param.Name, State: param.State})
 	if err != nil {
 		global.Logger.Errorf("svc.CountTag err: %v", err)
@@ -63,6 +55,15 @@ func (t Tag) List(c *gin.Context) {
 	response.ToResponseList(tags, totalRows)
 	return
 }
+
+// @Summary 获取单个标签
+// @Produce json
+// @Param id path int true "标签ID"
+// @Success 200 {object} model.Tag "成功"
+// @Failure 400 {object} errcode.Error "请求错误"
+// @Failure 500 {object} errcode.Error "内部错误"
+// @Router /api/v1/tags/{id} [get]
+func (t Tag) Get(c *gin.Context) {}
 
 // @Summary 新增标签
 // @Produce  json
