@@ -93,7 +93,7 @@ func (t Tag) Get(c *gin.Context) {
 
 // @Summary 新增标签
 // @Produce  json
-// @Param name body string true "标签名称" minlength(3) maxlength(100)
+// @Param name body string true "标签名称" minlength(1) maxlength(100)
 // @Param state body int false "状态" Enums(0, 1) default(1)
 // @Param created_by body string true "创建者" minlength(3) maxlength(100)
 // @Success 200 {object} model.Tag "成功"

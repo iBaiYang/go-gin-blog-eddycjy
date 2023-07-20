@@ -17,19 +17,19 @@
                 "summary": "获取多个文章",
                 "parameters": [
                     {
+                        "maxLength": 100,
                         "type": "string",
-                        "description": "文章名称",
-                        "name": "name",
+                        "description": "文章标题",
+                        "name": "title",
                         "in": "query"
                     },
                     {
+                        "enum": [
+                            0,
+                            1
+                        ],
                         "type": "integer",
-                        "description": "标签ID",
-                        "name": "tag_id",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
+                        "default": 1,
                         "description": "状态",
                         "name": "state",
                         "in": "query"
@@ -75,15 +75,8 @@
                 "summary": "创建文章",
                 "parameters": [
                     {
-                        "description": "标签ID",
-                        "name": "tag_id",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
+                        "maxLength": 100,
+                        "minLength": 3,
                         "description": "文章标题",
                         "name": "title",
                         "in": "body",
@@ -93,9 +86,12 @@
                         }
                     },
                     {
+                        "maxLength": 255,
+                        "minLength": 3,
                         "description": "文章简述",
                         "name": "desc",
                         "in": "body",
+                        "required": true,
                         "schema": {
                             "type": "string"
                         }
@@ -104,7 +100,6 @@
                         "description": "封面图片地址",
                         "name": "cover_image_url",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "type": "string"
                         }
@@ -113,21 +108,27 @@
                         "description": "文章内容",
                         "name": "content",
                         "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "maxLength": 100,
+                        "minLength": 3,
+                        "description": "创建者",
+                        "name": "created_by",
+                        "in": "body",
                         "required": true,
                         "schema": {
                             "type": "string"
                         }
                     },
                     {
-                        "description": "创建者",
-                        "name": "created_by",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
+                        "enum": [
+                            0,
+                            1
+                        ],
+                        "default": 1,
                         "description": "状态",
                         "name": "state",
                         "in": "body",
@@ -201,14 +202,15 @@
                 "summary": "更新文章",
                 "parameters": [
                     {
-                        "description": "标签ID",
-                        "name": "tag_id",
-                        "in": "body",
-                        "schema": {
-                            "type": "string"
-                        }
+                        "type": "integer",
+                        "description": "文章ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
                     },
                     {
+                        "maxLength": 100,
+                        "minLength": 3,
                         "description": "文章标题",
                         "name": "title",
                         "in": "body",
@@ -217,6 +219,8 @@
                         }
                     },
                     {
+                        "maxLength": 255,
+                        "minLength": 3,
                         "description": "文章简述",
                         "name": "desc",
                         "in": "body",
@@ -241,6 +245,21 @@
                         }
                     },
                     {
+                        "enum": [
+                            0,
+                            1
+                        ],
+                        "default": 1,
+                        "description": "状态",
+                        "name": "state",
+                        "in": "body",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "maxLength": 100,
+                        "minLength": 3,
                         "description": "修改者",
                         "name": "modified_by",
                         "in": "body",
@@ -374,7 +393,7 @@
                 "parameters": [
                     {
                         "maxLength": 100,
-                        "minLength": 3,
+                        "minLength": 1,
                         "description": "标签名称",
                         "name": "name",
                         "in": "body",

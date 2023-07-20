@@ -91,6 +91,43 @@ INSERT INTO `blog_auth`(`id`, `app_key`, `app_secret`, `created_on`, `created_by
 
 ## 命令
 
+### 获取包
+
+基础包：
+> go get -u github.com/gin-gonic/gin@v1.9.1
+
+配置处理：
+> go get -u github.com/spf13/viper@v1.4.0
+
+数据操作：
+> go get -u github.com/jinzhu/gorm@v1.9.12
+
+日志操作：
+> go get -u gopkg.in/natefinch/lumberjack.v2
+
+Swagger 相关联的库：
+> go get -u github.com/swaggo/swag/cmd/swag@v1.6.5
+>
+> go get -u github.com/swaggo/gin-swagger@v1.2.0 
+>
+> go get -u github.com/swaggo/files
+>
+> go get -u github.com/alecthomas/template
+
+参数校验：
+> go get -u github.com/go-playground/validator/v10
+
+JWT处理：
+> go get -u github.com/dgrijalva/jwt-go@v3.2.0
+
+邮件操作：
+> go get -u gopkg.in/gomail.v2
+
+令牌桶：
+> go get -u github.com/juju/ratelimit@v1.0.1
+
+
+
 ### tag标签
 
 新增一条：
@@ -108,6 +145,10 @@ INSERT INTO `blog_auth`(`id`, `app_key`, `app_secret`, `created_on`, `created_by
 获取列表（执行时总是报错，原来是win10中curl包的问题，浏览器访问没问题）：
 > curl -X GET http://127.0.0.1:8000/api/v1/tags?name=Go&state=1&page=2&page_size=2
 
+### Swagger文档
+
+生成文档：
+> swag init
 
 ### JWT认证
 

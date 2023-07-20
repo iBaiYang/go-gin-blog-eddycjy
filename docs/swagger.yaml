@@ -98,15 +98,16 @@ paths:
   /api/v1/articles:
     get:
       parameters:
-      - description: 文章名称
+      - description: 文章标题
         in: query
-        name: name
+        maxLength: 100
+        name: title
         type: string
-      - description: 标签ID
-        in: query
-        name: tag_id
-        type: integer
-      - description: 状态
+      - default: 1
+        description: 状态
+        enum:
+        - 0
+        - 1
         in: query
         name: state
         type: integer
@@ -136,42 +137,45 @@ paths:
       summary: 获取多个文章
     post:
       parameters:
-      - description: 标签ID
-        in: body
-        name: tag_id
-        required: true
-        schema:
-          type: string
       - description: 文章标题
         in: body
+        maxLength: 100
+        minLength: 3
         name: title
         required: true
         schema:
           type: string
       - description: 文章简述
         in: body
+        maxLength: 255
+        minLength: 3
         name: desc
+        required: true
         schema:
           type: string
       - description: 封面图片地址
         in: body
         name: cover_image_url
-        required: true
         schema:
           type: string
       - description: 文章内容
         in: body
         name: content
-        required: true
         schema:
           type: string
       - description: 创建者
         in: body
+        maxLength: 100
+        minLength: 3
         name: created_by
         required: true
         schema:
-          type: integer
-      - description: 状态
+          type: string
+      - default: 1
+        description: 状态
+        enum:
+        - 0
+        - 1
         in: body
         name: state
         schema:
@@ -241,18 +245,22 @@ paths:
       summary: 获取单个文章
     put:
       parameters:
-      - description: 标签ID
-        in: body
-        name: tag_id
-        schema:
-          type: string
+      - description: 文章ID
+        in: path
+        name: id
+        required: true
+        type: integer
       - description: 文章标题
         in: body
+        maxLength: 100
+        minLength: 3
         name: title
         schema:
           type: string
       - description: 文章简述
         in: body
+        maxLength: 255
+        minLength: 3
         name: desc
         schema:
           type: string
@@ -266,8 +274,19 @@ paths:
         name: content
         schema:
           type: string
+      - default: 1
+        description: 状态
+        enum:
+        - 0
+        - 1
+        in: body
+        name: state
+        schema:
+          type: integer
       - description: 修改者
         in: body
+        maxLength: 100
+        minLength: 3
         name: modified_by
         required: true
         schema:
@@ -333,7 +352,7 @@ paths:
       - description: 标签名称
         in: body
         maxLength: 100
-        minLength: 3
+        minLength: 1
         name: name
         required: true
         schema:

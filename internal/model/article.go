@@ -66,7 +66,7 @@ func (a Article) ListByIDs(db *gorm.DB, ids []uint32) ([]*Article, error) {
 
 func (a Article) Get(db *gorm.DB) (Article, error) {
 	var Article Article
-	err := db.Where("id = ? AND is_del = ?", t.ID, 0).First(&Article).Error
+	err := db.Where("id = ? AND is_del = ?", a.ID, 0).First(&Article).Error
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return Article, err
 	}
