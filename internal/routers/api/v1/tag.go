@@ -83,7 +83,7 @@ func (t Tag) Get(c *gin.Context) {
 	tag, err := svc.GetTag(&param)
 	if err != nil {
 		global.Logger.Errorf("svc.GetTag err: %v", err)
-		response.ToErrorResponse(errcode.ErrorGetTagListFail)
+		response.ToErrorResponse(errcode.ErrorGetTagFail)
 		return
 	}
 
