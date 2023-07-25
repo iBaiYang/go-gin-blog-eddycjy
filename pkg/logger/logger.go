@@ -58,6 +58,9 @@ func (l *Logger) clone() *Logger {
 	return &nl
 }
 
+/*
+设置日志公共字段
+*/
 func (l *Logger) WithFields(f Fields) *Logger {
 	ll := l.clone()
 	if ll.fields == nil {
@@ -69,12 +72,18 @@ func (l *Logger) WithFields(f Fields) *Logger {
 	return ll
 }
 
+/*
+设置日志上下文属性
+*/
 func (l *Logger) WithContext(ctx context.Context) *Logger {
 	ll := l.clone()
 	ll.ctx = ctx
 	return ll
 }
 
+/*
+设置当前某一层调用栈的信息（程序计数器、文件信息、行号）
+*/
 func (l *Logger) WithCaller(skip int) *Logger {
 	ll := l.clone()
 	pc, file, line, ok := runtime.Caller(skip)
@@ -86,6 +95,9 @@ func (l *Logger) WithCaller(skip int) *Logger {
 	return ll
 }
 
+/*
+设置当前的整个调用栈信息
+*/
 func (l *Logger) WithCallersFrames() *Logger {
 	maxCallerDepth := 25
 	minCallerDepth := 1
@@ -104,6 +116,9 @@ func (l *Logger) WithCallersFrames() *Logger {
 	return ll
 }
 
+/*
+日志内容的格式化
+*/
 func (l *Logger) JSONFormat(level Level, message string) map[string]interface{} {
 	data := make(Fields, len(l.fields)+4)
 	data["level"] = level.String()
@@ -121,6 +136,9 @@ func (l *Logger) JSONFormat(level Level, message string) map[string]interface{} 
 	return data
 }
 
+/*
+日志输出动作
+*/
 func (l *Logger) Output(level Level, message string) {
 	body, _ := json.Marshal(l.JSONFormat(level, message))
 	content := string(body)
@@ -140,6 +158,9 @@ func (l *Logger) Output(level Level, message string) {
 	}
 }
 
+/*
+根据先前定义的日志分级，编写对应的日志输出的外部方法
+*/
 func (l *Logger) Debug(v ...interface{}) {
 	l.Output(LevelDebug, fmt.Sprint(v...))
 }

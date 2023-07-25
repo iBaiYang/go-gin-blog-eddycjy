@@ -22,6 +22,14 @@
 
 ## 数据库
 
+创建库：
+```
+CREATE DATABASE
+IF
+	NOT EXISTS blog_service DEFAULT CHARACTER 
+	SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
+```
+
 标签表：
 ```
 CREATE TABLE `blog_tag` (
@@ -71,7 +79,10 @@ CREATE TABLE `blog_article_tag` (
   `is_del` tinyint(3) unsigned DEFAULT '0' COMMENT '是否删除 0 为未删除、1 为已删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='文章标签关联';
+```
 
+权限表：
+```
 CREATE TABLE `blog_auth` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `app_key` varchar(20) DEFAULT '' COMMENT 'Key',
@@ -86,7 +97,6 @@ CREATE TABLE `blog_auth` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='认证管理';
 
 INSERT INTO `blog_auth`(`id`, `app_key`, `app_secret`, `created_on`, `created_by`, `modified_on`, `modified_by`, `deleted_on`, `is_del`) VALUES (1, 'abc', 'go-gin-blog', 0, 'author', 0, '', 0, 0);
-
 ```
 
 ## 命令

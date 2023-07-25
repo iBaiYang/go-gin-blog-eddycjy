@@ -1,5 +1,7 @@
 package convert
 
+// 类型转换
+
 import "strconv"
 
 type StrTo string

@@ -47,12 +47,14 @@ func NewRouter() *gin.Engine {
 	//url := ginSwagger.URL("http://127.0.0.1:8000/swagger/doc.json")
 	//r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 
+	// 初步定义
 	//apiv1 := r.Group("/api/v1")
 	//{
 	//	apiv1.POST("/tags")
 	//	apiv1.DELETE("/tags/:id")
 	//	apiv1.PUT("/tags/:id")
 	//	apiv1.PATCH("/tags/:id/state")
+	//  apiv1.GET("/tags/:id")
 	//	apiv1.GET("/tags")
 	//
 	//	apiv1.POST("/articles")
@@ -83,6 +85,7 @@ func NewRouter() *gin.Engine {
 		apiv1.GET("/articles", article.List)
 	}
 
+	// 增加JWT认证过滤
 	//apiv1 := r.Group("/api/v1")
 	//apiv1.Use(middleware.JWT())
 	//{

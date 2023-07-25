@@ -5,14 +5,17 @@ import (
 	"net/http"
 )
 
+// 错误定义结构体
 type Error struct {
 	code    int      `json:"code"`
 	msg     string   `json:"msg"`
 	details []string `json:"details"`
 }
 
+// 全局错误码集合
 var codes = map[int]string{}
 
+// 登记并创建 Error 实例
 func NewError(code int, msg string) *Error {
 	if _, ok := codes[code]; ok {
 		panic(fmt.Sprintf("错误码 %d 已经存在，请更换一个", code))

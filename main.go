@@ -35,15 +35,20 @@ func init() {
 // @description Go 语言编程之旅：一起用 Go 做项目
 // @termsOfService https://github.com/iBaiYang/go-gin-blog-eddycjy
 func main() {
+	// 引导示例
 	//r := gin.Default()
 	//r.GET("/ping", func(c *gin.Context) {
 	//	c.JSON(200, gin.H{"message": "pong"})
 	//})
 	//r.Run()
 
+	// 设置模式
 	gin.SetMode(global.ServerSetting.RunMode)
+
+	// 路由处理器
 	router := routers.NewRouter()
 
+	// 手写的固定参数
 	//s := &http.Server{
 	//	Addr:           ":8080",
 	//	Handler:        router,
@@ -52,6 +57,7 @@ func main() {
 	//	MaxHeaderBytes: 1 << 20,
 	//}
 
+	// 配置的参数
 	s := &http.Server{
 		Addr:           ":" + global.ServerSetting.HttpPort,
 		Handler:        router,
@@ -63,6 +69,9 @@ func main() {
 	s.ListenAndServe()
 }
 
+/*
+配置设置
+*/
 func setupSetting() error {
 	setting, err := setting.NewSetting()
 	if err != nil {
@@ -100,6 +109,9 @@ func setupSetting() error {
 	return nil
 }
 
+/*
+日志对象 Logger 初始化
+*/
 func setupLogger() error {
 	global.Logger = logger.NewLogger(&lumberjack.Logger{
 		Filename:  global.AppSetting.LogSavePath + "/" + global.AppSetting.LogFileName + global.AppSetting.LogFileExt,

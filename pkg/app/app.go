@@ -1,5 +1,7 @@
 package app
 
+// 响应处理
+
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/iBaiYang/go-gin-blog-eddycjy/pkg/errcode"
