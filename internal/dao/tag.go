@@ -39,6 +39,7 @@ func (d *Dao) CreateTag(name string, state uint8, createdBy string) error {
 }
 
 func (d *Dao) UpdateTag(id uint32, name string, state uint8, modifiedBy string) error {
+	/*status=0 时不会更新*/
 	//tag := model.Tag{
 	//	Name:  name,
 	//	State: state,
@@ -47,6 +48,7 @@ func (d *Dao) UpdateTag(id uint32, name string, state uint8, modifiedBy string) 
 	//
 	//return tag.Update(d.engine)
 
+	/*status=0 时也会更新*/
 	tag := model.Tag{
 		Model: &model.Model{ID: id},
 	}
