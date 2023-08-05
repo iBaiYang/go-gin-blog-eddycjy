@@ -75,9 +75,13 @@ func (t Tag) Create(db *gorm.DB) error {
 	return db.Create(&t).Error
 }
 
-func (t Tag) Update(db *gorm.DB, values interface{}) error {
-	//return db.Model(&Tag{}).Where("id = ? AND is_del = ?", t.ID, 0).Update(t).Error
+/*status=0 时不会更新*/
+//func (t Tag) Update(db *gorm.DB) error {
+//	return db.Model(&Tag{}).Where("id = ? AND is_del = ?", t.ID, 0).Update(t).Error
+//}
 
+/*status=0 时也会更新*/
+func (t Tag) Update(db *gorm.DB, values interface{}) error {
 	if err := db.Model(t).Where("id = ? AND is_del = ?", t.ID, 0).Updates(values).Error; err != nil {
 		return err
 	}
