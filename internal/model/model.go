@@ -6,6 +6,7 @@ import (
 	"github.com/iBaiYang/go-gin-blog-eddycjy/pkg/setting"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	//otgorm "github.com/eddycjy/opentracing-gorm"
 	"time"
 )
 
@@ -43,6 +44,9 @@ func NewDBEngine(databaseSetting *setting.DatabaseSettingS) (*gorm.DB, error) {
 	db.Callback().Create().Replace("gorm:update_time_stamp", updateTimeStampForCreateCallback)
 	db.Callback().Update().Replace("gorm:update_time_stamp", updateTimeStampForUpdateCallback)
 	db.Callback().Delete().Replace("gorm:delete", deleteCallback)
+
+	// SQL追踪
+	//otgorm.AddGormCallbacks(db)
 
 	return db, nil
 }
