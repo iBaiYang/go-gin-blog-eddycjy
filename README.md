@@ -136,6 +136,12 @@ JWT处理：
 令牌桶：
 > go get -u github.com/juju/ratelimit@v1.0.1
 
+OpenTracing API和Jaeger Client：
+> go get -u github.com/opentracing/opentracing-go@v1.1.0
+> 
+> go get -u github.com/uber/jaeger-client-go@v2.22.1
+
+
 
 
 ### tag标签

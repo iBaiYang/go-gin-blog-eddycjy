@@ -7,6 +7,7 @@ import (
 	"github.com/iBaiYang/go-gin-blog-eddycjy/internal/routers"
 	"github.com/iBaiYang/go-gin-blog-eddycjy/pkg/logger"
 	"github.com/iBaiYang/go-gin-blog-eddycjy/pkg/setting"
+	"github.com/iBaiYang/go-gin-blog-eddycjy/pkg/tracer"
 	"gopkg.in/natefinch/lumberjack.v2"
 	"log"
 	"net/http"
@@ -28,11 +29,16 @@ func init() {
 	if err != nil {
 		log.Fatalf("init.setupDBEngine err: %v", err)
 	}
+
+	err = setupTracer()
+	if err != nil {
+		log.Fatalf("init.setupTracer err: %v", err)
+	}
 }
 
 // @title 博客系统
 // @version 1.0
-// @description Go 语言编程之旅：一起用 Go 做项目
+// @description Go 语言编程 blog 学习
 // @termsOfService https://github.com/iBaiYang/go-gin-blog-eddycjy
 func main() {
 	// 引导示例
@@ -123,6 +129,9 @@ func setupLogger() error {
 	return nil
 }
 
+/*
+数据库对象 DBEngine 初始化
+*/
 func setupDBEngine() error {
 	var err error
 	global.DBEngine, err = model.NewDBEngine(global.DatabaseSetting)
@@ -130,5 +139,17 @@ func setupDBEngine() error {
 		return err
 	}
 
+	return nil
+}
+
+/*
+链路追踪对象 Tracer 初始化
+*/
+func setupTracer() error {
+	jaegerTracer, _, err := tracer.NewJaegerTracer("blog-service", "192.168.56.108:6831")
+	if err != nil {
+		return err
+	}
+	global.Tracer = jaegerTracer
 	return nil
 }
