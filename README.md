@@ -181,5 +181,6 @@ fsnotify包安装：
 应用配置后运行命令，如：
 > go run main.go -port=8000 -mode=release -config=configs/
 
-
+编译信息写入：
+> go build -ldflags "-X main.buildTime=`date +%Y-%m-%d,%H:%M:%S` -X main.buildVersion=1.0.0 -X main.gitCommitID=`git rev-parse HEAD`"
 

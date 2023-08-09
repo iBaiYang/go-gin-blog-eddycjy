@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/iBaiYang/go-gin-blog-eddycjy/global"
 	"github.com/iBaiYang/go-gin-blog-eddycjy/internal/model"
@@ -17,9 +18,13 @@ import (
 )
 
 var (
-	port    string
-	runMode string
-	config  string
+	port         string
+	runMode      string
+	config       string
+	isVersion    bool
+	buildTime    string
+	buildVersion string
+	gitCommitID  string
 )
 
 func init() {
@@ -54,7 +59,15 @@ func init() {
 // @description Go 语言编程 blog 学习
 // @termsOfService https://github.com/iBaiYang/go-gin-blog-eddycjy
 func main() {
-	// 引导示例
+	/*查看编译信息*/
+	if isVersion {
+		fmt.Printf("build_time: %s\n", buildTime)
+		fmt.Printf("build_version: %s\n", buildVersion)
+		fmt.Printf("git_commit_id: %s\n", gitCommitID)
+		return
+	}
+
+	/*引导示例*/
 	//r := gin.Default()
 	//r.GET("/ping", func(c *gin.Context) {
 	//	c.JSON(200, gin.H{"message": "pong"})
@@ -95,6 +108,7 @@ func setupFlag() error {
 	flag.StringVar(&port, "port", "", "启动端口")
 	flag.StringVar(&runMode, "mode", "", "启动模式")
 	flag.StringVar(&config, "config", "configs/", "指定要使用的配置文件路径")
+	flag.BoolVar(&isVersion, "version", false, "编译信息")
 	flag.Parse()
 
 	return nil
