@@ -142,8 +142,6 @@ OpenTracing API和Jaeger Client：
 > go get -u github.com/uber/jaeger-client-go@v2.22.1
 
 
-
-
 ### tag标签
 
 新增一条：
@@ -173,5 +171,11 @@ OpenTracing API和Jaeger Client：
 
 访问验证：
 > curl -X GET http://127.0.0.1:8000/api/v1/tags?token={token}
+
+### 其他
+
+应用配置后运行命令，如：
+> go run main.go -port=8000 -mode=release -config=configs/
+
 
 

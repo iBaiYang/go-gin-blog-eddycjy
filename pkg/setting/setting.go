@@ -6,10 +6,28 @@ type Setting struct {
 	vp *viper.Viper
 }
 
-func NewSetting() (*Setting, error) {
+//func NewSetting() (*Setting, error) {
+//	vp := viper.New()
+//	vp.SetConfigName("config")
+//	vp.AddConfigPath("configs/")
+//	vp.SetConfigType("yaml")
+//	err := vp.ReadInConfig()
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	return &Setting{vp}, nil
+//}
+
+func NewSetting(configs ...string) (*Setting, error) {
 	vp := viper.New()
 	vp.SetConfigName("config")
-	vp.AddConfigPath("configs/")
+	for _, config := range configs {
+		if config != "" {
+			vp.AddConfigPath(config)
+		}
+	}
+
 	vp.SetConfigType("yaml")
 	err := vp.ReadInConfig()
 	if err != nil {
