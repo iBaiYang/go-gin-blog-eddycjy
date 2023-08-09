@@ -1,6 +1,9 @@
 package setting
 
-import "github.com/spf13/viper"
+import (
+	"github.com/fsnotify/fsnotify"
+	"github.com/spf13/viper"
+)
 
 type Setting struct {
 	vp *viper.Viper
@@ -19,6 +22,7 @@ type Setting struct {
 //	return &Setting{vp}, nil
 //}
 
+/*配置读取*/
 func NewSetting(configs ...string) (*Setting, error) {
 	vp := viper.New()
 	vp.SetConfigName("config")
@@ -34,5 +38,20 @@ func NewSetting(configs ...string) (*Setting, error) {
 		return nil, err
 	}
 
-	return &Setting{vp}, nil
+	//return &Setting{vp}, nil
+
+	/*配置热更新*/
+	s := &Setting{vp}
+	s.WatchSettingChange()
+	return s, nil
+}
+
+/*配置热更新*/
+func (s *Setting) WatchSettingChange() {
+	go func() {
+		s.vp.WatchConfig()
+		s.vp.OnConfigChange(func(in fsnotify.Event) {
+			_ = s.ReloadAllSection()
+		})
+	}()
 }

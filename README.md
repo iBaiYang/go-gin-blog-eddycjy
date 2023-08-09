@@ -141,6 +141,10 @@ OpenTracing API和Jaeger Client：
 > 
 > go get -u github.com/uber/jaeger-client-go@v2.22.1
 
+fsnotify包安装：
+> go get -u golang.org/x/sys/...
+>
+> go get -u github.com/fsnotify/fsnotify
 
 ### tag标签
 
